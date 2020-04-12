@@ -1,0 +1,703 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB1AFA332442CF8C0044EB8B /* SafraCrab.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = DB1AFA322442CF8C0044EB8B /* SafraCrab.entitlements */; };
+		DB1AFA352442CF8C0044EB8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA342442CF8C0044EB8B /* AppDelegate.swift */; };
+		DB1AFA382442CF8C0044EB8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB1AFA362442CF8C0044EB8B /* Main.storyboard */; };
+		DB1AFA3A2442CF8C0044EB8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA392442CF8C0044EB8B /* ViewController.swift */; };
+		DB1AFA3C2442CF8E0044EB8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB1AFA3B2442CF8E0044EB8B /* Assets.xcassets */; };
+		DB1AFA472442CF8E0044EB8B /* SafraCrabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA462442CF8E0044EB8B /* SafraCrabTests.swift */; };
+		DB1AFA4E2442CF8E0044EB8B /* SafraCrab Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DB1AFA4D2442CF8E0044EB8B /* SafraCrab Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DB1AFA532442CF8E0044EB8B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1AFA522442CF8E0044EB8B /* Cocoa.framework */; };
+		DB1AFA562442CF8E0044EB8B /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA552442CF8E0044EB8B /* SafariExtensionHandler.swift */; };
+		DB1AFA582442CF8E0044EB8B /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA572442CF8E0044EB8B /* SafariExtensionViewController.swift */; };
+		DB1AFA5B2442CF8E0044EB8B /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1AFA592442CF8E0044EB8B /* SafariExtensionViewController.xib */; };
+		DB1AFA5E2442CF8E0044EB8B /* SafraCrab.js in Resources */ = {isa = PBXBuildFile; fileRef = DB1AFA5D2442CF8E0044EB8B /* SafraCrab.js */; };
+		DB1AFA602442CF8E0044EB8B /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = DB1AFA5F2442CF8E0044EB8B /* ToolbarItemIcon.pdf */; };
+		DB1AFA79244320200044EB8B /* CommonOSLog in Frameworks */ = {isa = PBXBuildFile; productRef = DB1AFA78244320200044EB8B /* CommonOSLog */; };
+		DB1AFA7B244320200044EB8B /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = DB1AFA7A244320200044EB8B /* SwiftyJSON */; };
+		DB1AFA7D244321530044EB8B /* TSDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA7C244321530044EB8B /* TSDM.swift */; };
+		DB1AFA7F24434D3C0044EB8B /* TSDMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA7E24434D3C0044EB8B /* TSDMService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB1AFA432442CF8E0044EB8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB1AFA272442CF8C0044EB8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB1AFA2E2442CF8C0044EB8B;
+			remoteInfo = SafraCrab;
+		};
+		DB1AFA4F2442CF8E0044EB8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB1AFA272442CF8C0044EB8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB1AFA4C2442CF8E0044EB8B;
+			remoteInfo = "SafraCrab Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DB1AFA672442CF8E0044EB8B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DB1AFA4E2442CF8E0044EB8B /* SafraCrab Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DB1AFA2F2442CF8C0044EB8B /* SafraCrab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafraCrab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB1AFA322442CF8C0044EB8B /* SafraCrab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafraCrab.entitlements; sourceTree = "<group>"; };
+		DB1AFA342442CF8C0044EB8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DB1AFA372442CF8C0044EB8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DB1AFA392442CF8C0044EB8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DB1AFA3B2442CF8E0044EB8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB1AFA3D2442CF8E0044EB8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB1AFA422442CF8E0044EB8B /* SafraCrabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafraCrabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB1AFA462442CF8E0044EB8B /* SafraCrabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafraCrabTests.swift; sourceTree = "<group>"; };
+		DB1AFA482442CF8E0044EB8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB1AFA4D2442CF8E0044EB8B /* SafraCrab Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SafraCrab Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB1AFA522442CF8E0044EB8B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		DB1AFA552442CF8E0044EB8B /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
+		DB1AFA572442CF8E0044EB8B /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
+		DB1AFA5A2442CF8E0044EB8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
+		DB1AFA5C2442CF8E0044EB8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB1AFA5D2442CF8E0044EB8B /* SafraCrab.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SafraCrab.js; sourceTree = "<group>"; };
+		DB1AFA5F2442CF8E0044EB8B /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
+		DB1AFA612442CF8E0044EB8B /* SafraCrab_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafraCrab_Extension.entitlements; sourceTree = "<group>"; };
+		DB1AFA7C244321530044EB8B /* TSDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSDM.swift; sourceTree = "<group>"; };
+		DB1AFA7E24434D3C0044EB8B /* TSDMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSDMService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB1AFA2C2442CF8C0044EB8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB1AFA3F2442CF8E0044EB8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB1AFA4A2442CF8E0044EB8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB1AFA7B244320200044EB8B /* SwiftyJSON in Frameworks */,
+				DB1AFA79244320200044EB8B /* CommonOSLog in Frameworks */,
+				DB1AFA532442CF8E0044EB8B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB1AFA262442CF8C0044EB8B = {
+			isa = PBXGroup;
+			children = (
+				DB1AFA312442CF8C0044EB8B /* SafraCrab */,
+				DB1AFA452442CF8E0044EB8B /* SafraCrabTests */,
+				DB1AFA542442CF8E0044EB8B /* SafraCrab Extension */,
+				DB1AFA512442CF8E0044EB8B /* Frameworks */,
+				DB1AFA302442CF8C0044EB8B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB1AFA302442CF8C0044EB8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB1AFA2F2442CF8C0044EB8B /* SafraCrab.app */,
+				DB1AFA422442CF8E0044EB8B /* SafraCrabTests.xctest */,
+				DB1AFA4D2442CF8E0044EB8B /* SafraCrab Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB1AFA312442CF8C0044EB8B /* SafraCrab */ = {
+			isa = PBXGroup;
+			children = (
+				DB1AFA322442CF8C0044EB8B /* SafraCrab.entitlements */,
+				DB1AFA342442CF8C0044EB8B /* AppDelegate.swift */,
+				DB1AFA362442CF8C0044EB8B /* Main.storyboard */,
+				DB1AFA392442CF8C0044EB8B /* ViewController.swift */,
+				DB1AFA3B2442CF8E0044EB8B /* Assets.xcassets */,
+				DB1AFA3D2442CF8E0044EB8B /* Info.plist */,
+			);
+			path = SafraCrab;
+			sourceTree = "<group>";
+		};
+		DB1AFA452442CF8E0044EB8B /* SafraCrabTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB1AFA462442CF8E0044EB8B /* SafraCrabTests.swift */,
+				DB1AFA482442CF8E0044EB8B /* Info.plist */,
+			);
+			path = SafraCrabTests;
+			sourceTree = "<group>";
+		};
+		DB1AFA512442CF8E0044EB8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB1AFA522442CF8E0044EB8B /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB1AFA542442CF8E0044EB8B /* SafraCrab Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DB1AFA552442CF8E0044EB8B /* SafariExtensionHandler.swift */,
+				DB1AFA572442CF8E0044EB8B /* SafariExtensionViewController.swift */,
+				DB1AFA592442CF8E0044EB8B /* SafariExtensionViewController.xib */,
+				DB1AFA5C2442CF8E0044EB8B /* Info.plist */,
+				DB1AFA5D2442CF8E0044EB8B /* SafraCrab.js */,
+				DB1AFA8024434E750044EB8B /* TSDM */,
+				DB1AFA5F2442CF8E0044EB8B /* ToolbarItemIcon.pdf */,
+				DB1AFA612442CF8E0044EB8B /* SafraCrab_Extension.entitlements */,
+			);
+			path = "SafraCrab Extension";
+			sourceTree = "<group>";
+		};
+		DB1AFA8024434E750044EB8B /* TSDM */ = {
+			isa = PBXGroup;
+			children = (
+				DB1AFA7C244321530044EB8B /* TSDM.swift */,
+				DB1AFA7E24434D3C0044EB8B /* TSDMService.swift */,
+			);
+			path = TSDM;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB1AFA2E2442CF8C0044EB8B /* SafraCrab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB1AFA682442CF8E0044EB8B /* Build configuration list for PBXNativeTarget "SafraCrab" */;
+			buildPhases = (
+				DB1AFA2B2442CF8C0044EB8B /* Sources */,
+				DB1AFA2C2442CF8C0044EB8B /* Frameworks */,
+				DB1AFA2D2442CF8C0044EB8B /* Resources */,
+				DB1AFA672442CF8E0044EB8B /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB1AFA502442CF8E0044EB8B /* PBXTargetDependency */,
+			);
+			name = SafraCrab;
+			packageProductDependencies = (
+			);
+			productName = SafraCrab;
+			productReference = DB1AFA2F2442CF8C0044EB8B /* SafraCrab.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DB1AFA412442CF8E0044EB8B /* SafraCrabTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB1AFA6B2442CF8E0044EB8B /* Build configuration list for PBXNativeTarget "SafraCrabTests" */;
+			buildPhases = (
+				DB1AFA3E2442CF8E0044EB8B /* Sources */,
+				DB1AFA3F2442CF8E0044EB8B /* Frameworks */,
+				DB1AFA402442CF8E0044EB8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB1AFA442442CF8E0044EB8B /* PBXTargetDependency */,
+			);
+			name = SafraCrabTests;
+			productName = SafraCrabTests;
+			productReference = DB1AFA422442CF8E0044EB8B /* SafraCrabTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DB1AFA4C2442CF8E0044EB8B /* SafraCrab Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB1AFA642442CF8E0044EB8B /* Build configuration list for PBXNativeTarget "SafraCrab Extension" */;
+			buildPhases = (
+				DB1AFA492442CF8E0044EB8B /* Sources */,
+				DB1AFA4A2442CF8E0044EB8B /* Frameworks */,
+				DB1AFA4B2442CF8E0044EB8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SafraCrab Extension";
+			packageProductDependencies = (
+				DB1AFA78244320200044EB8B /* CommonOSLog */,
+				DB1AFA7A244320200044EB8B /* SwiftyJSON */,
+			);
+			productName = "SafraCrab Extension";
+			productReference = DB1AFA4D2442CF8E0044EB8B /* SafraCrab Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB1AFA272442CF8C0044EB8B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = MainasuK;
+				TargetAttributes = {
+					DB1AFA2E2442CF8C0044EB8B = {
+						CreatedOnToolsVersion = 11.4;
+					};
+					DB1AFA412442CF8E0044EB8B = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = DB1AFA2E2442CF8C0044EB8B;
+					};
+					DB1AFA4C2442CF8E0044EB8B = {
+						CreatedOnToolsVersion = 11.4;
+					};
+				};
+			};
+			buildConfigurationList = DB1AFA2A2442CF8C0044EB8B /* Build configuration list for PBXProject "SafraCrab" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB1AFA262442CF8C0044EB8B;
+			packageReferences = (
+				DB1AFA702442F5D20044EB8B /* XCRemoteSwiftPackageReference "CommonOSLog" */,
+				DB1AFA7524431EED0044EB8B /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
+			productRefGroup = DB1AFA302442CF8C0044EB8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB1AFA2E2442CF8C0044EB8B /* SafraCrab */,
+				DB1AFA412442CF8E0044EB8B /* SafraCrabTests */,
+				DB1AFA4C2442CF8E0044EB8B /* SafraCrab Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB1AFA2D2442CF8C0044EB8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB1AFA332442CF8C0044EB8B /* SafraCrab.entitlements in Resources */,
+				DB1AFA3C2442CF8E0044EB8B /* Assets.xcassets in Resources */,
+				DB1AFA382442CF8C0044EB8B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB1AFA402442CF8E0044EB8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB1AFA4B2442CF8E0044EB8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB1AFA602442CF8E0044EB8B /* ToolbarItemIcon.pdf in Resources */,
+				DB1AFA5B2442CF8E0044EB8B /* SafariExtensionViewController.xib in Resources */,
+				DB1AFA5E2442CF8E0044EB8B /* SafraCrab.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB1AFA2B2442CF8C0044EB8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB1AFA3A2442CF8C0044EB8B /* ViewController.swift in Sources */,
+				DB1AFA352442CF8C0044EB8B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB1AFA3E2442CF8E0044EB8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB1AFA472442CF8E0044EB8B /* SafraCrabTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB1AFA492442CF8E0044EB8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB1AFA582442CF8E0044EB8B /* SafariExtensionViewController.swift in Sources */,
+				DB1AFA7F24434D3C0044EB8B /* TSDMService.swift in Sources */,
+				DB1AFA562442CF8E0044EB8B /* SafariExtensionHandler.swift in Sources */,
+				DB1AFA7D244321530044EB8B /* TSDM.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB1AFA442442CF8E0044EB8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB1AFA2E2442CF8C0044EB8B /* SafraCrab */;
+			targetProxy = DB1AFA432442CF8E0044EB8B /* PBXContainerItemProxy */;
+		};
+		DB1AFA502442CF8E0044EB8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB1AFA4C2442CF8E0044EB8B /* SafraCrab Extension */;
+			targetProxy = DB1AFA4F2442CF8E0044EB8B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DB1AFA362442CF8C0044EB8B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB1AFA372442CF8C0044EB8B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DB1AFA592442CF8E0044EB8B /* SafariExtensionViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB1AFA5A2442CF8E0044EB8B /* Base */,
+			);
+			name = SafariExtensionViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DB1AFA622442CF8E0044EB8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB1AFA632442CF8E0044EB8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		DB1AFA652442CF8E0044EB8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "SafraCrab Extension/SafraCrab_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A8K92XFF77;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "SafraCrab Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mainasuk.SafraCrab-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DB1AFA662442CF8E0044EB8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "SafraCrab Extension/SafraCrab_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A8K92XFF77;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "SafraCrab Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mainasuk.SafraCrab-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		DB1AFA692442CF8E0044EB8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SafraCrab/SafraCrab.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A8K92XFF77;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = SafraCrab/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mainasuk.SafraCrab;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DB1AFA6A2442CF8E0044EB8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SafraCrab/SafraCrab.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A8K92XFF77;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = SafraCrab/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mainasuk.SafraCrab;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		DB1AFA6C2442CF8E0044EB8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A8K92XFF77;
+				INFOPLIST_FILE = SafraCrabTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mainasuk.SafraCrabTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafraCrab.app/Contents/MacOS/SafraCrab";
+			};
+			name = Debug;
+		};
+		DB1AFA6D2442CF8E0044EB8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A8K92XFF77;
+				INFOPLIST_FILE = SafraCrabTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mainasuk.SafraCrabTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafraCrab.app/Contents/MacOS/SafraCrab";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB1AFA2A2442CF8C0044EB8B /* Build configuration list for PBXProject "SafraCrab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB1AFA622442CF8E0044EB8B /* Debug */,
+				DB1AFA632442CF8E0044EB8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB1AFA642442CF8E0044EB8B /* Build configuration list for PBXNativeTarget "SafraCrab Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB1AFA652442CF8E0044EB8B /* Debug */,
+				DB1AFA662442CF8E0044EB8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB1AFA682442CF8E0044EB8B /* Build configuration list for PBXNativeTarget "SafraCrab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB1AFA692442CF8E0044EB8B /* Debug */,
+				DB1AFA6A2442CF8E0044EB8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB1AFA6B2442CF8E0044EB8B /* Build configuration list for PBXNativeTarget "SafraCrabTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB1AFA6C2442CF8E0044EB8B /* Debug */,
+				DB1AFA6D2442CF8E0044EB8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DB1AFA702442F5D20044EB8B /* XCRemoteSwiftPackageReference "CommonOSLog" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MainasuK/CommonOSLog.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+		DB1AFA7524431EED0044EB8B /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DB1AFA78244320200044EB8B /* CommonOSLog */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB1AFA702442F5D20044EB8B /* XCRemoteSwiftPackageReference "CommonOSLog" */;
+			productName = CommonOSLog;
+		};
+		DB1AFA7A244320200044EB8B /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB1AFA7524431EED0044EB8B /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DB1AFA272442CF8C0044EB8B /* Project object */;
+}
