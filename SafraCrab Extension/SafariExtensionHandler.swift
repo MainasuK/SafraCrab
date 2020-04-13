@@ -26,20 +26,41 @@ final class SafariExtensionHandlerViewModel {
             let model = tsdmService.model(of: page, at: uri)
             model.page = page
             
+            // post pay info
             if let cost = json["cost"].int {
                 model.cost = cost
             }
             if let payable = json["payable"].bool {
                 model.payable = payable
             }
+            
+            // post BaiduYun info
+            if let baiduYunLinks = (json["baiduYunLinks"].array?.compactMap { $0.string }),
+            let baiduYunCodes = (json["baiduYunCodes"].array?.compactMap { $0.string }) {
+                let infos = zip(baiduYunLinks, baiduYunCodes)
+                let baiduYuns = infos.compactMap { link, code -> TSDM.BaiduYun? in
+                    guard let url = URL(string: link) else  { return nil }
+                    return TSDM.BaiduYun(link: url, code: code)
+                }
+                model.baiduYuns.send(baiduYuns)
+            }
         
             #if DEBUG
             os_log("^ %{public}s[%{public}ld], %{public}s: TSDM: %{public}s", ((#file as NSString).lastPathComponent), #line, #function, model.debugDescription)
             #endif
             
+        case "BaiduYun":
+            if json["event"] == "DOMContentLoaded", let surl = json["surl"].string,
+            let code = tsdmService.searchBaiduYunCode(by: surl) {
+                page.dispatchMessageToScript(
+                    withName: "BaiduYun",
+                    userInfo: ["action": "fulfillCode", "code": code]
+                )
+            }
+            
         case "SafraCrab":
             let model = tsdmService.models[page]
-            tsdmService.models[page] = nil
+            tsdmService.removeModel(of: page)
             os_log("^ %{public}s[%{public}ld], %{public}s: remove model: %{public}s", ((#file as NSString).lastPathComponent), #line, #function, model.debugDescription)
             
         default:
@@ -50,6 +71,8 @@ final class SafariExtensionHandlerViewModel {
     }
     
     func popoverWillShowForPage(page: SFSafariPage) {
+        os_log("^ %{public}s[%{public}ld], %{public}s", ((#file as NSString).lastPathComponent), #line, #function)
+        
         SafariExtensionViewController.shared.reset()
         
         // [DEBUG]
@@ -59,6 +82,11 @@ final class SafariExtensionHandlerViewModel {
         // SafariExtensionViewController.shared.configure(with: _TSDM)
         // return
         
+        
+        // request TSDM current BaiduYun info
+        tsdmService.updateBaiduYunState(of: page)
+        
+        // check TSDM state and set
         if let TSDM = tsdmService.model(of: page) {
             SafariExtensionViewController.shared.configure(with: TSDM)
         }
@@ -119,6 +147,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     override func popoverDidClose(in window: SFSafariWindow) {
+        os_log("^ %{public}s[%{public}ld], %{public}s: [TSDM] %{public}s", ((#file as NSString).lastPathComponent), #line, #function, viewModel.tsdmService.models.debugDescription)
 //        window.getActiveTab { tab in
 //            guard let tab = tab else { return }
 //            tab.getActivePage(completionHandler: { page in
@@ -131,7 +160,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     
     override func page(_ page: SFSafariPage, willNavigateTo url: URL?) {
         let model = viewModel.tsdmService.models[page]
-        viewModel.tsdmService.models[page] = nil
+        viewModel.tsdmService.removeModel(of: page)
         
         os_log("^ %{public}s[%{public}ld], %{public}s: remove model: %{public}s", ((#file as NSString).lastPathComponent), #line, #function, model.debugDescription)
     }

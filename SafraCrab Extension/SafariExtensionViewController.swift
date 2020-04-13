@@ -8,8 +8,11 @@
 
 import SafariServices
 import CommonOSLog
+import Combine
 
 class SafariExtensionViewController: SFSafariExtensionViewController {
+    
+    var disposeBag = Set<AnyCancellable>()
     
     var tsdm: TSDM?
     
@@ -27,6 +30,10 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         stackView.spacing = 4
         return stackView
     }()
+    
+    deinit {
+        os_log("^ %{public}s[%{public}ld], %{public}s: deinit", ((#file as NSString).lastPathComponent), #line, #function)
+    }
 
 }
 
@@ -66,6 +73,7 @@ extension SafariExtensionViewController {
             $0.removeFromSuperview()
         }
         
+        disposeBag.removeAll()
         tsdm = nil
     }
     
@@ -82,7 +90,6 @@ extension SafariExtensionViewController {
         stackView.addArrangedSubview(topPaddingView)
         
         let header = NSTextField(labelWithString: "天使动漫")
-        // header.font = NSFont.systemFont(ofSize: 14, weight: .medium)
         stackView.addArrangedSubview(header)
         
         let line = NSBox()
@@ -123,12 +130,79 @@ extension SafariExtensionViewController {
             ])
         }
         
+        let baiduYunStackView = NSStackView()
+        baiduYunStackView.orientation = .vertical
+        tsdm?.baiduYuns
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { baiduYuns in
+                // cleanup
+                for subview in baiduYunStackView.subviews {
+                    baiduYunStackView.removeArrangedSubview(subview)
+                    subview.removeFromSuperview()
+                }
+
+                // insert new views
+                baiduYuns
+                    .map { info -> PopoverControlEntryView in
+                        let entryView = PopoverControlEntryView()
+                        entryView.title.stringValue = "百度网盘：\(info.code)"
+                        entryView.button.title = "下载"
+                        entryView.userInfo["TSDM.BaiduYun"] = info
+                        entryView.delegate = self
+                        return entryView
+                    }
+                    .forEach { containerView in
+                        baiduYunStackView.addArrangedSubview(containerView)
+
+                        containerView.translatesAutoresizingMaskIntoConstraints = false
+                        baiduYunStackView.addArrangedSubview(containerView)
+                        NSLayoutConstraint.activate([
+                            containerView.leadingAnchor.constraint(equalTo: baiduYunStackView.leadingAnchor),
+                            containerView.trailingAnchor.constraint(equalTo: baiduYunStackView.trailingAnchor),
+                        ])
+                    }
+            })
+            .store(in: &disposeBag)
+
+        stackView.addArrangedSubview(baiduYunStackView)
+        NSLayoutConstraint.activate([
+            baiduYunStackView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            baiduYunStackView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+        ])
+        
+        // #if DEBUG
+        // let debugLabel = NSTextField(labelWithString: "1")
+        // stackView.addArrangedSubview(debugLabel)
+        // #endif
+        
         let bottomPaddingView = NSView()
         bottomPaddingView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             bottomPaddingView.heightAnchor.constraint(equalToConstant: 4),
         ])
         stackView.addArrangedSubview(bottomPaddingView)
+    }
+    
+}
+
+// MARK: - PopoverControlEntryViewDelegate
+extension SafariExtensionViewController: PopoverControlEntryViewDelegate {
+    
+    func popoverControlEntryView(_ view: PopoverControlEntryView, buttonDidPressed button: NSButton) {
+        os_log("^ %{public}s[%{public}ld], %{public}s", ((#file as NSString).lastPathComponent), #line, #function)
+
+        defer {
+            dismissPopover()
+        }
+        
+        guard let baiduYun = view.userInfo["TSDM.BaiduYun"] as? TSDM.BaiduYun else { return }
+        
+        SFSafariApplication.getActiveWindow { window in
+            guard let window = window else { return }
+            window.openTab(with: baiduYun.link, makeActiveIfPossible: true) { tab in
+                // do nothing
+            }
+        }
     }
     
 }

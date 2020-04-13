@@ -24,6 +24,7 @@
 		DB1AFA7B244320200044EB8B /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = DB1AFA7A244320200044EB8B /* SwiftyJSON */; };
 		DB1AFA7D244321530044EB8B /* TSDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA7C244321530044EB8B /* TSDM.swift */; };
 		DB1AFA7F24434D3C0044EB8B /* TSDMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA7E24434D3C0044EB8B /* TSDMService.swift */; };
+		DB1AFA822444D77C0044EB8B /* PopoverControlEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA812444D77C0044EB8B /* PopoverControlEntryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		DB1AFA612442CF8E0044EB8B /* SafraCrab_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafraCrab_Extension.entitlements; sourceTree = "<group>"; };
 		DB1AFA7C244321530044EB8B /* TSDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSDM.swift; sourceTree = "<group>"; };
 		DB1AFA7E24434D3C0044EB8B /* TSDMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSDMService.swift; sourceTree = "<group>"; };
+		DB1AFA812444D77C0044EB8B /* PopoverControlEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverControlEntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				DB1AFA8024434E750044EB8B /* TSDM */,
 				DB1AFA5F2442CF8E0044EB8B /* ToolbarItemIcon.pdf */,
 				DB1AFA612442CF8E0044EB8B /* SafraCrab_Extension.entitlements */,
+				DB1AFA812444D77C0044EB8B /* PopoverControlEntryView.swift */,
 			);
 			path = "SafraCrab Extension";
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				DB1AFA7F24434D3C0044EB8B /* TSDMService.swift in Sources */,
 				DB1AFA562442CF8E0044EB8B /* SafariExtensionHandler.swift in Sources */,
 				DB1AFA7D244321530044EB8B /* TSDM.swift in Sources */,
+				DB1AFA822444D77C0044EB8B /* PopoverControlEntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

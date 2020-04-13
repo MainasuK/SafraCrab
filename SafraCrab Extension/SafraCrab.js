@@ -20,11 +20,37 @@ async function aysncSelector(selector, time = 1000, wait_count = 5) {
     return new Promise(resolve => { resolve(element) } );
 }
 
+// MARK: - BaiduYun
+
+function getBaiduYunLinks(node) {
+    // get links
+    var baiduLinks = [], links = node.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) {
+        var href = links[i].href;
+        if (href.startsWith('https://pan.baidu.com')) {
+            baiduLinks.push(href);
+        }
+    }
+    
+    return baiduLinks;
+}
+
+function getBaiduYunCodes(node) {
+    // get codes
+    var codes = node.innerText.match(/([0-9a-zA-Z]{4}).*/gm).filter(function(code) { return code.length == 4; } );
+    return codes;
+}
+
 // MARK: - TSDM
 function registerTSDM() {
     if (!document.domain.includes('tsdm')) {
         return ;
     }
+    
+    // init object
+    safari.extension.dispatchMessage('TSDM', {
+        'uri': safari.extension.baseURI
+    });
     
     // get cost
     let locked = document.querySelector('div.locked');
@@ -55,18 +81,31 @@ function registerTSDM() {
         // do nothing
     }
     
-    // listen pay action
+    // set listener
     safari.self.addEventListener("message", function(event) {
-        // console.log(event.name);
-        // console.log(event.message);
         if (event.name != "TSDM") {
             return ;
         }
       
+        // listen pay action
         if (event.message.action == "pay") {
             payTSDM();
         }
         
+        // listen check BaiduYun action
+        if (event.message.action == "checkBaiduYun") {
+            var targetContent = getPayContent();
+            if (targetContent != null) {
+                var links = getBaiduYunLinks(targetContent);
+                var codes = getBaiduYunCodes(targetContent);
+                
+                safari.extension.dispatchMessage('TSDM', {
+                    'uri': safari.extension.baseURI,
+                    'baiduYunLinks': links,
+                    'baiduYunCodes': codes
+                });
+            }
+        }
     });
 }
 
@@ -101,6 +140,50 @@ function payTSDM() {
     }); // end pay
 }
 
+function getPayContent() {
+    if (document.querySelector('.free-content')) {
+        var content = document.querySelector('.free-content').parentNode.cloneNode(true);
+        content.removeChild(content.querySelector('.free-content'));
+        return content;
+    } else {
+        return null;
+    }
+}
+
+// MARK: - BaiduYun
+
+function registerBaiduYun() {
+    if (document.domain != 'pan.baidu.com') {
+        return ;
+    }
+    
+    var searchParams = (new URL(document.location)).searchParams;
+    var surl = searchParams.get('surl');
+    
+    // send trigger
+    safari.extension.dispatchMessage('BaiduYun', {
+        'uri': safari.extension.baseURI,
+        'event': "DOMContentLoaded",
+        'surl': surl,
+    });
+    
+    // set listener
+    safari.self.addEventListener("message", function(event) {
+        if (event.name != "BaiduYun") {
+            return ;
+        }
+        
+        // listen fulfillCode action
+        if (event.message.action == "fulfillCode") {
+            var code = event.message.code;
+            console.log(code);
+            
+            document.querySelector('form input').value = code;
+            document.querySelector('form .input-area a').click();
+        }
+    });
+}
+
 // MARK: - main
 // The parent frame is the top-level frame, not an iframe.
 // All non-iframe code goes before the closing brace.
@@ -110,7 +193,8 @@ if (window.top === window) {
         console.log(safari.extension);
         
         // register components
-        registerTSDM()
+        registerTSDM();
+        registerBaiduYun();
 	});
     
     window.onunload = function(event) {

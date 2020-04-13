@@ -8,6 +8,7 @@
 
 import Foundation
 import SafariServices
+import CommonOSLog
 
 final class TSDMService {
     
@@ -18,8 +19,7 @@ final class TSDMService {
     private init() { }
 
     let uuid = UUID()
-    var models: [SFSafariPage: TSDM] = [:]
-    
+    private(set) var models: [SFSafariPage: TSDM] = [:]
 }
 
 extension TSDMService {
@@ -46,6 +46,44 @@ extension TSDMService {
         } else {
             return nil
         }
+    }
+    
+    func removeModel(of page: SFSafariPage) {
+        if let model = models[page] {
+            models[page] = nil
+        } else if let page = models.first(where: { $0.key.isEqual(page) })?.key {
+            models[page] = nil
+        } else {
+            // do nothing
+        }
+    }
+    
+}
+
+extension TSDMService {
+    
+    func updateBaiduYunState(of page: SFSafariPage) {
+        guard let tsdm = model(of: page) else {
+            return
+        }
+        
+        tsdm.baiduYuns.send([])
+        page.dispatchMessageToScript(withName: "TSDM", userInfo: ["action": "checkBaiduYun"])
+        
+        os_log("^ %{public}s[%{public}ld], %{public}s", ((#file as NSString).lastPathComponent), #line, #function)
+    }
+    
+    func searchBaiduYunCode(by surl: String) -> String? {
+        let baiduYuns = models.values.map { $0.baiduYuns.value }.flatMap { $0 }
+        for baiduYun in baiduYuns {
+            guard baiduYun.link.absoluteString.contains(surl) else {
+                continue
+            }
+            
+            return baiduYun.code
+        }
+        
+        return nil
     }
     
 }

@@ -17,11 +17,25 @@ class TSDM {
     let uuid = UUID()
     
     var uri: URL
+    
+    // post payment info
     var cost: Int?
     var payable = false
     
+    // post BaiduYun info
+    let baiduYuns = CurrentValueSubject<[BaiduYun], Never>([])
+    
     init(uri: URL) {
         self.uri = uri
+    }
+    
+}
+
+extension TSDM {
+    
+    struct BaiduYun {
+        let link: URL
+        let code: String
     }
     
 }
@@ -34,7 +48,19 @@ extension TSDM: CustomDebugStringConvertible {
         uri: \(uri.description)
         cost: \(cost ?? -1)
         payable: \(payable)
+        baiduYun: \(baiduYuns.value.debugDescription)
         """
     }
 
+}
+
+extension TSDM.BaiduYun: CustomDebugStringConvertible {
+    
+    var debugDescription: String {
+        return """
+        link: \(link.description)
+        code: \(code)
+        """
+    }
+    
 }
