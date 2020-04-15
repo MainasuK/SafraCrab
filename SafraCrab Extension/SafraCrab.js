@@ -41,7 +41,7 @@ function getBaiduYunCodes(node) {
         if (fullMatch.length == 4) {
             return fullMatch;
         } else {
-            var match = fullMatch.match(/(?:Code|校验码)\W*([0-9a-zA-Z]{4})/);
+            var match = fullMatch.match(/(?:Code|校验码|提取码)\W*([0-9a-zA-Z]{4})/);
             if (match != null) {
                 var code = match[1];
                 return code;
