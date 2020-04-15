@@ -37,7 +37,19 @@ function getBaiduYunLinks(node) {
 
 function getBaiduYunCodes(node) {
     // get codes
-    var codes = node.innerText.match(/([0-9a-zA-Z]{4}).*/gm).filter(function(code) { return code.length == 4; } );
+    var codes = node.innerText.match(/([0-9a-zA-Z]{4}).*/gm).map(function(fullMatch) {
+        if (fullMatch.length == 4) {
+            return fullMatch;
+        } else {
+            var match = fullMatch.match(/(?:Code|校验码)\W*([0-9a-zA-Z]{4})/);
+            if (match != null) {
+                var code = match[1];
+                return code;
+            } else {
+                return null;
+            }
+        }
+    });
     return codes;
 }
 
