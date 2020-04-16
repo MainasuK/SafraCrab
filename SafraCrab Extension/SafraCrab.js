@@ -157,6 +157,8 @@ function getPayContent() {
         var content = document.querySelector('.free-content').parentNode.cloneNode(true);
         content.removeChild(content.querySelector('.free-content'));
         return content;
+    } else if (document.querySelector('.showhide')) {
+        return document.querySelector('.showhide');
     } else {
         return null;
     }
