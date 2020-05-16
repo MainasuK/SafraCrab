@@ -38,7 +38,7 @@ function getBaiduYunLinks(node) {
 function getBaiduYunCodes(node) {
     // get codes
     var codes = node.innerText.match(/([0-9a-zA-Z]{4}).*/gm).map(function(fullMatch) {
-        if (fullMatch.length == 4) {
+        if (fullMatch.trim().length == 4) {
             return fullMatch;
         } else {
             var match = fullMatch.match(/(?:Code|校验码|提取码)\W*([0-9a-zA-Z]{4})/i);
