@@ -83,7 +83,7 @@ function registerTSDM() {
     }
     
     // get pay state
-    let payButton = document.querySelector('div.locked a.viewpay');
+    let payButton = document.querySelector('div.locked');
     if (payButton !== null) {
         safari.extension.dispatchMessage('TSDM', {
             'uri': safari.extension.baseURI,
@@ -153,12 +153,12 @@ function payTSDM() {
 }
 
 function getPayContent() {
-    if (document.querySelector('.free-content')) {
+    if (document.querySelector('.showhide')) {
+        return document.querySelector('.showhide');
+    } else if (document.querySelector('.free-content')) {
         var content = document.querySelector('.free-content').parentNode.cloneNode(true);
         content.removeChild(content.querySelector('.free-content'));
         return content;
-    } else if (document.querySelector('.showhide')) {
-        return document.querySelector('.showhide');
     } else {
         return null;
     }
