@@ -14,6 +14,7 @@ import SwiftyJSON
 final class SafariExtensionHandlerViewModel {
 
     let tsdmService = TSDMService.shared
+    let appleDeveloperService = AppleDeveloperService.shared
     
     func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
         os_log("^ %{public}s[%{public}ld], %{public}s: message from page: %{public}s\n%{public}s\n%{public}s", ((#file as NSString).lastPathComponent), #line, #function, page.description, messageName, userInfo.debugDescription)
@@ -58,6 +59,20 @@ final class SafariExtensionHandlerViewModel {
                 )
             }
             
+        case "AppleDeveloper":
+            guard json["event"] == "DOMContentLoaded",
+                let title = json["title"].string, let content = json["content"].string else {
+                return
+            }
+            
+            let model = appleDeveloperService.model(of: page, at: uri)
+            model.releaseNote = AppleDeveloper.ReleaseNote(title: title, content: content)
+            
+            #if DEBUG
+            os_log("^ %{public}s[%{public}ld], %{public}s: AppleDeveloper: %{public}s", ((#file as NSString).lastPathComponent), #line, #function, model.debugDescription)
+            #endif
+            
+        // onunload
         case "SafraCrab":
             let model = tsdmService.models[page]
             tsdmService.removeModel(of: page)
@@ -82,14 +97,29 @@ final class SafariExtensionHandlerViewModel {
         // SafariExtensionViewController.shared.configure(with: _TSDM)
         // return
         
+        // [DEBUG]
+        // let _appleDeveloper = AppleDeveloper(uri: URL(string: "https://demo.com")!)
+        // _appleDeveloper.releaseNote = AppleDeveloper.ReleaseNote(title: "Xcode 12 Beta Release Notes", content: "Content")
+        // SafariExtensionViewController.shared.configure(with: _appleDeveloper)
+        // return
         
         // request TSDM current BaiduYun info
         tsdmService.updateBaiduYunState(of: page)
         
+        os_log("^ %{public}s[%{public}ld], %{public}s: TSDM service: %{public}s", ((#file as NSString).lastPathComponent), #line, #function, tsdmService.models.debugDescription)
+
         // check TSDM state and set
         if let TSDM = tsdmService.model(of: page) {
             SafariExtensionViewController.shared.configure(with: TSDM)
         }
+        
+        os_log("^ %{public}s[%{public}ld], %{public}s: AppleDeveloper service: %{public}s", ((#file as NSString).lastPathComponent), #line, #function, appleDeveloperService.models.debugDescription)
+        
+        if let appleDeveloper = appleDeveloperService.model(of: page) {
+            SafariExtensionViewController.shared.configure(with: appleDeveloper)
+        }
+        
+        SafariExtensionViewController.shared.finishConfigure()
     }
     
 }

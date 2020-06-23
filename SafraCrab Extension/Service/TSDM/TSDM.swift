@@ -10,12 +10,11 @@ import Foundation
 import SafariServices
 import Combine
 
-class TSDM {
-    
-    var page: SFSafariPage?
+class TSDM: SafraCrabModel {
     
     let uuid = UUID()
     
+    var page: SFSafariPage?
     var uri: URL
     
     // post payment info
@@ -25,7 +24,7 @@ class TSDM {
     // post BaiduYun info
     let baiduYuns = CurrentValueSubject<[BaiduYun], Never>([])
     
-    init(uri: URL) {
+    required init(uri: URI) {
         self.uri = uri
     }
     

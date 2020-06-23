@@ -13,44 +13,11 @@ async function aysncSelector(selector, time = 1000, wait_count = 5) {
         await sleep(time, wait_count);
         element = document.querySelector(selector);
         count += 1;
-        console.log(count);
-        console.log(element);
+        // console.log(count);
+        // console.log(element.textContent);
     } while (element == null && count < wait_count);
     
     return new Promise(resolve => { resolve(element) } );
-}
-
-// MARK: - BaiduYun
-
-function getBaiduYunLinks(node) {
-    // get links
-    var baiduLinks = [], links = node.querySelectorAll('a');
-    for (var i = 0; i < links.length; i++) {
-        var href = links[i].href;
-        if (href.startsWith('https://pan.baidu.com')) {
-            baiduLinks.push(href);
-        }
-    }
-    
-    return baiduLinks;
-}
-
-function getBaiduYunCodes(node) {
-    // get codes
-    var codes = node.innerText.match(/([0-9a-zA-Z]{4}).*/gm).map(function(fullMatch) {
-        if (fullMatch.trim().length == 4) {
-            return fullMatch;
-        } else {
-            var match = fullMatch.match(/(?:Code|校验码|提取码)\W*([0-9a-zA-Z]{4})/i);
-            if (match != null) {
-                var code = match[1];
-                return code;
-            } else {
-                return null;
-            }
-        }
-    });
-    return codes;
 }
 
 // MARK: - TSDM
@@ -166,6 +133,37 @@ function getPayContent() {
 
 // MARK: - BaiduYun
 
+function getBaiduYunLinks(node) {
+    // get links
+    var baiduLinks = [], links = node.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) {
+        var href = links[i].href;
+        if (href.startsWith('https://pan.baidu.com')) {
+            baiduLinks.push(href);
+        }
+    }
+    
+    return baiduLinks;
+}
+
+function getBaiduYunCodes(node) {
+    // get codes
+    var codes = node.innerText.match(/([0-9a-zA-Z]{4}).*/gm).map(function(fullMatch) {
+        if (fullMatch.trim().length == 4) {
+            return fullMatch;
+        } else {
+            var match = fullMatch.match(/(?:Code|校验码|提取码)\W*([0-9a-zA-Z]{4})/i);
+            if (match != null) {
+                var code = match[1];
+                return code;
+            } else {
+                return null;
+            }
+        }
+    });
+    return codes;
+}
+
 function registerBaiduYun() {
     if (document.domain != 'pan.baidu.com') {
         return ;
@@ -198,6 +196,38 @@ function registerBaiduYun() {
     });
 }
 
+// MARK: - Apple Developer
+
+function registerAppleDeveloperDownload() {
+    if (document.domain != 'developer.apple.com') {
+        return ;
+    }
+    
+    var releaseNote = {};
+    
+    // wait
+    aysncSelector('h1.title', 3000, 10)
+    .then(header => {
+        var title = header.innerText;
+        releaseNote.title = title;
+    
+        aysncSelector('div.primary-content > div.content', 3000, 10)
+        .then(primaryContent => {
+            var content = primaryContent.innerText;
+            releaseNote.content = content;
+            
+            // send trigger
+            safari.extension.dispatchMessage('AppleDeveloper', {
+                'uri': safari.extension.baseURI,
+                'event': "DOMContentLoaded",
+                'title': releaseNote.title,
+                'content': releaseNote.content,
+            });
+        });
+    });
+
+}
+
 // MARK: - main
 // The parent frame is the top-level frame, not an iframe.
 // All non-iframe code goes before the closing brace.
@@ -209,6 +239,7 @@ if (window.top === window) {
         // register components
         registerTSDM();
         registerBaiduYun();
+        registerAppleDeveloperDownload();
 	});
     
     window.onunload = function(event) {
