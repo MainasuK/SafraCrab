@@ -1,43 +1,33 @@
 //
-//  TSDMService.swift
+//  SafraCrabService.swift
 //  SafraCrab Extension
 //
-//  Created by Cirno MainasuK on 2020-4-12.
+//  Created by Cirno MainasuK on 2020-6-23.
 //  Copyright © 2020 MainasuK. All rights reserved.
 //
 
 import Foundation
 import SafariServices
 
-final class TSDMService {
+class SafraCrabService<T: SafraCrabModel> {
     
-    typealias URI = URL
-    
-    // MARK: - Singleton
-    public static let shared = TSDMService()
-    private init() { }
-
     let uuid = UUID()
-    var models: [SFSafariPage: TSDM] = [:]
+    private(set) var models: [SFSafariPage: T] = [:]
     
-}
-
-extension TSDMService {
-    
-    func model(of page: SFSafariPage, at uri: URI) -> TSDM {
+    func model(of page: SFSafariPage, at uri: T.URI) -> T {
         if let model = models[page] {
             return model
         } else if let model = models.first(where: { $0.key.isEqual(page) })?.value {
             model.page = page
             return model
         } else {
-            let model = TSDM(uri: uri)
+            let model = T(uri: uri)
             models[page] = model
             return model
         }
     }
     
-    func model(of page: SFSafariPage) -> TSDM? {
+    func model(of page: SFSafariPage) -> T? {
         if let model = models[page] {
             return model
         } else if let model = models.first(where: { $0.key.isEqual(page) })?.value {
@@ -48,4 +38,13 @@ extension TSDMService {
         }
     }
     
+    func removeModel(of page: SFSafariPage) {
+        if let model = models[page] {
+            models[page] = nil
+        } else if let page = models.first(where: { $0.key.isEqual(page) })?.key {
+            models[page] = nil
+        } else {
+            // do nothing
+        }
+    }
 }

@@ -24,6 +24,11 @@
 		DB1AFA7B244320200044EB8B /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = DB1AFA7A244320200044EB8B /* SwiftyJSON */; };
 		DB1AFA7D244321530044EB8B /* TSDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA7C244321530044EB8B /* TSDM.swift */; };
 		DB1AFA7F24434D3C0044EB8B /* TSDMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA7E24434D3C0044EB8B /* TSDMService.swift */; };
+		DB1AFA822444D77C0044EB8B /* PopoverControlEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA812444D77C0044EB8B /* PopoverControlEntryView.swift */; };
+		DB1E85EA24A1B35A00B1558B /* AppleDeveloperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1E85E924A1B35A00B1558B /* AppleDeveloperService.swift */; };
+		DB1E85ED24A1C83600B1558B /* SafraCrabService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1E85EC24A1C83600B1558B /* SafraCrabService.swift */; };
+		DB1E85F024A1C86700B1558B /* SafraCrabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1E85EF24A1C86700B1558B /* SafraCrabModel.swift */; };
+		DB1E85F324A1CA3500B1558B /* AppleDeveloper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1E85F224A1CA3500B1558B /* AppleDeveloper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +84,11 @@
 		DB1AFA612442CF8E0044EB8B /* SafraCrab_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafraCrab_Extension.entitlements; sourceTree = "<group>"; };
 		DB1AFA7C244321530044EB8B /* TSDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSDM.swift; sourceTree = "<group>"; };
 		DB1AFA7E24434D3C0044EB8B /* TSDMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSDMService.swift; sourceTree = "<group>"; };
+		DB1AFA812444D77C0044EB8B /* PopoverControlEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverControlEntryView.swift; sourceTree = "<group>"; };
+		DB1E85E924A1B35A00B1558B /* AppleDeveloperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleDeveloperService.swift; sourceTree = "<group>"; };
+		DB1E85EC24A1C83600B1558B /* SafraCrabService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafraCrabService.swift; sourceTree = "<group>"; };
+		DB1E85EF24A1C86700B1558B /* SafraCrabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafraCrabModel.swift; sourceTree = "<group>"; };
+		DB1E85F224A1CA3500B1558B /* AppleDeveloper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleDeveloper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +178,8 @@
 				DB1AFA592442CF8E0044EB8B /* SafariExtensionViewController.xib */,
 				DB1AFA5C2442CF8E0044EB8B /* Info.plist */,
 				DB1AFA5D2442CF8E0044EB8B /* SafraCrab.js */,
-				DB1AFA8024434E750044EB8B /* TSDM */,
+				DB1E85EE24A1C83900B1558B /* Service */,
+				DB1E85F124A1C98000B1558B /* View */,
 				DB1AFA5F2442CF8E0044EB8B /* ToolbarItemIcon.pdf */,
 				DB1AFA612442CF8E0044EB8B /* SafraCrab_Extension.entitlements */,
 			);
@@ -182,6 +193,34 @@
 				DB1AFA7E24434D3C0044EB8B /* TSDMService.swift */,
 			);
 			path = TSDM;
+			sourceTree = "<group>";
+		};
+		DB1E85EB24A1B35D00B1558B /* AppleDeveloper */ = {
+			isa = PBXGroup;
+			children = (
+				DB1E85E924A1B35A00B1558B /* AppleDeveloperService.swift */,
+				DB1E85F224A1CA3500B1558B /* AppleDeveloper.swift */,
+			);
+			path = AppleDeveloper;
+			sourceTree = "<group>";
+		};
+		DB1E85EE24A1C83900B1558B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DB1AFA8024434E750044EB8B /* TSDM */,
+				DB1E85EB24A1B35D00B1558B /* AppleDeveloper */,
+				DB1E85EC24A1C83600B1558B /* SafraCrabService.swift */,
+				DB1E85EF24A1C86700B1558B /* SafraCrabModel.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		DB1E85F124A1C98000B1558B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DB1AFA812444D77C0044EB8B /* PopoverControlEntryView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,10 +384,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB1E85F324A1CA3500B1558B /* AppleDeveloper.swift in Sources */,
 				DB1AFA582442CF8E0044EB8B /* SafariExtensionViewController.swift in Sources */,
+				DB1E85ED24A1C83600B1558B /* SafraCrabService.swift in Sources */,
+				DB1E85EA24A1B35A00B1558B /* AppleDeveloperService.swift in Sources */,
 				DB1AFA7F24434D3C0044EB8B /* TSDMService.swift in Sources */,
 				DB1AFA562442CF8E0044EB8B /* SafariExtensionHandler.swift in Sources */,
+				DB1E85F024A1C86700B1558B /* SafraCrabModel.swift in Sources */,
 				DB1AFA7D244321530044EB8B /* TSDM.swift in Sources */,
+				DB1AFA822444D77C0044EB8B /* PopoverControlEntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +557,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mainasuk.SafraCrab-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -533,6 +578,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mainasuk.SafraCrab-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -555,6 +601,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mainasuk.SafraCrab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -576,6 +623,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mainasuk.SafraCrab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

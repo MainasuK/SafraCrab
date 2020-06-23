@@ -8,10 +8,14 @@
 
 import SafariServices
 import CommonOSLog
+import Combine
 
 class SafariExtensionViewController: SFSafariExtensionViewController {
     
+    var disposeBag = Set<AnyCancellable>()
+    
     var tsdm: TSDM?
+    var appleDeveloper: AppleDeveloper?
     
     static let shared: SafariExtensionViewController = {
         let shared = SafariExtensionViewController()
@@ -27,6 +31,10 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         stackView.spacing = 4
         return stackView
     }()
+    
+    deinit {
+        os_log("^ %{public}s[%{public}ld], %{public}s: deinit", ((#file as NSString).lastPathComponent), #line, #function)
+    }
 
 }
 
@@ -66,7 +74,9 @@ extension SafariExtensionViewController {
             $0.removeFromSuperview()
         }
         
+        disposeBag.removeAll()
         tsdm = nil
+        appleDeveloper = nil
     }
     
     func configure(with viewModel: TSDM) {
@@ -82,7 +92,6 @@ extension SafariExtensionViewController {
         stackView.addArrangedSubview(topPaddingView)
         
         let header = NSTextField(labelWithString: "天使动漫")
-        // header.font = NSFont.systemFont(ofSize: 14, weight: .medium)
         stackView.addArrangedSubview(header)
         
         let line = NSBox()
@@ -123,12 +132,132 @@ extension SafariExtensionViewController {
             ])
         }
         
+        let baiduYunStackView = NSStackView()
+        baiduYunStackView.orientation = .vertical
+        tsdm?.baiduYuns
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { baiduYuns in
+                // cleanup
+                for subview in baiduYunStackView.subviews {
+                    baiduYunStackView.removeArrangedSubview(subview)
+                    subview.removeFromSuperview()
+                }
+
+                // insert new views
+                baiduYuns
+                    .map { info -> PopoverControlEntryView in
+                        let entryView = PopoverControlEntryView()
+                        entryView.title.stringValue = "百度网盘：\(info.code)"
+                        entryView.button.title = "下载"
+                        entryView.userInfo["TSDM.BaiduYun"] = info
+                        entryView.delegate = self
+                        return entryView
+                    }
+                    .forEach { containerView in
+                        baiduYunStackView.addArrangedSubview(containerView)
+
+                        containerView.translatesAutoresizingMaskIntoConstraints = false
+                        baiduYunStackView.addArrangedSubview(containerView)
+                        NSLayoutConstraint.activate([
+                            containerView.leadingAnchor.constraint(equalTo: baiduYunStackView.leadingAnchor),
+                            containerView.trailingAnchor.constraint(equalTo: baiduYunStackView.trailingAnchor),
+                        ])
+                    }
+            })
+            .store(in: &disposeBag)
+
+        stackView.addArrangedSubview(baiduYunStackView)
+        NSLayoutConstraint.activate([
+            baiduYunStackView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            baiduYunStackView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+        ])
+        
+        // #if DEBUG
+        // let debugLabel = NSTextField(labelWithString: "1")
+        // stackView.addArrangedSubview(debugLabel)
+        // #endif
+    }
+    
+    func configure(with viewModel: AppleDeveloper) {
+        os_log("^ %{public}s[%{public}ld], %{public}s: %{public}s", ((#file as NSString).lastPathComponent), #line, #function, viewModel.debugDescription)
+        
+        appleDeveloper = viewModel
+        
+        let topPaddingView = NSView()
+        topPaddingView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topPaddingView.heightAnchor.constraint(equalToConstant: 4),
+        ])
+        stackView.addArrangedSubview(topPaddingView)
+        
+        let header = NSTextField(labelWithString: "Apple Developer")
+        stackView.addArrangedSubview(header)
+        
+        let line = NSBox()
+        line.boxType = .separator
+        stackView.addArrangedSubview(line)
+        
+        if let releaseNote = viewModel.releaseNote {
+            let entryView = PopoverControlEntryView()
+            entryView.title.stringValue = releaseNote.title
+            entryView.button.title = "下载"
+            entryView.userInfo["AppleDeveloper.ReleaseNote"] = releaseNote
+            entryView.delegate = self
+            
+            entryView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.addArrangedSubview(entryView)
+            NSLayoutConstraint.activate([
+                entryView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+                entryView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            ])
+        }
+    }
+    
+    func finishConfigure() {
+        let constant: CGFloat = stackView.arrangedSubviews.isEmpty ? 20 : 4
+        
         let bottomPaddingView = NSView()
         bottomPaddingView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bottomPaddingView.heightAnchor.constraint(equalToConstant: 4),
+            bottomPaddingView.heightAnchor.constraint(equalToConstant: constant),
         ])
         stackView.addArrangedSubview(bottomPaddingView)
+    }
+    
+}
+
+// MARK: - PopoverControlEntryViewDelegate
+extension SafariExtensionViewController: PopoverControlEntryViewDelegate {
+    
+    func popoverControlEntryView(_ view: PopoverControlEntryView, buttonDidPressed button: NSButton) {
+        os_log("^ %{public}s[%{public}ld], %{public}s", ((#file as NSString).lastPathComponent), #line, #function)
+
+        defer {
+            dismissPopover()
+        }
+        
+        if let baiduYun = view.userInfo["TSDM.BaiduYun"] as? TSDM.BaiduYun {
+            SFSafariApplication.getActiveWindow { window in
+                guard let window = window else { return }
+                window.openTab(with: baiduYun.link, makeActiveIfPossible: true) { tab in
+                    // do nothing
+                }
+            }
+        }
+        
+        if let releaseNote = view.userInfo["AppleDeveloper.ReleaseNote"] as? AppleDeveloper.ReleaseNote {
+            let savePanel = NSSavePanel()
+            savePanel.allowedFileTypes = ["txt"]
+            savePanel.nameFieldStringValue = releaseNote.title
+            savePanel.showsTagField = false
+            savePanel.begin { response in
+                os_log("^ %{public}s[%{public}ld], %{public}s: save response: %{public}s", ((#file as NSString).lastPathComponent), #line, #function, String(describing: response))
+                
+                if response == .OK, let destinationURL = savePanel.url {
+                    try? releaseNote.content.write(to: destinationURL, atomically: true, encoding: .utf8)
+                }
+            }
+        }
     }
     
 }
