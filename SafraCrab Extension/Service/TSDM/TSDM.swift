@@ -21,6 +21,9 @@ class TSDM: SafraCrabModel {
     var cost: Int?
     var payable = false
     
+    // reply info
+    var respondable = false
+    
     // post BaiduYun info
     let baiduYuns = CurrentValueSubject<[BaiduYun], Never>([])
     
@@ -47,6 +50,7 @@ extension TSDM: CustomDebugStringConvertible {
         uri: \(uri.description)
         cost: \(cost ?? -1)
         payable: \(payable)
+        respondable: \(respondable)
         baiduYun: \(baiduYuns.value.debugDescription)
         """
     }

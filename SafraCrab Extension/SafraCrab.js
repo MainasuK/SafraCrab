@@ -60,6 +60,17 @@ function registerTSDM() {
         // do nothing
     }
     
+    // check reply panel
+    let replyButton = document.querySelector('div.locked:last-of-type a');
+    if (replyButton !== null) {
+        safari.extension.dispatchMessage('TSDM', {
+            'uri': safari.extension.baseURI,
+            'respondable': true,
+        });
+    } else {
+        // do nothing
+    }
+    
     // set listener
     safari.self.addEventListener("message", function(event) {
         if (event.name != "TSDM") {
@@ -69,6 +80,10 @@ function registerTSDM() {
         // listen pay action
         if (event.message.action == "pay") {
             payTSDM();
+        }
+        
+        if (event.message.action == "reply") {
+            replyThanks();
         }
         
         // listen check BaiduYun action
@@ -97,25 +112,8 @@ function payTSDM() {
     .then(button => {
         // click pay button
         button.click();
-        
-        // wait reply panel (if exists)
-        aysncSelector('div.locked:last-of-type a', 3000, 10)
-        .then(replyButton => {
-            if (replyButton != null) {
-                // click reply button
-                replyButton.click();
-                
-                // wait textarea
-                return aysncSelector('#floatlayout_reply textarea')
-                .then(textarea => {
-                    // fulfill textarea
-                    textarea.value = '感谢分享';
-                    
-                    // click reply
-                    document.querySelector('#fwin_content_reply div#moreconf button').click();
-                });
-            }
-        });    // end reply
+        // reply if could
+        replyThanks();
     }); // end pay
 }
 
@@ -129,6 +127,27 @@ function getPayContent() {
     } else {
         return null;
     }
+}
+
+function replyThanks() {
+    // wait reply panel (if exists)
+    aysncSelector('div.locked:last-of-type a', 3000, 10)
+    .then(replyButton => {
+        if (replyButton != null) {
+            // click reply button
+            replyButton.click();
+            
+            // wait textarea
+            return aysncSelector('#floatlayout_reply textarea')
+            .then(textarea => {
+                // fulfill textarea
+                textarea.value = '感谢分享';
+                
+                // click reply
+                document.querySelector('#fwin_content_reply div#moreconf button').click();
+            });
+        }
+    });    // end reply
 }
 
 // MARK: - BaiduYun

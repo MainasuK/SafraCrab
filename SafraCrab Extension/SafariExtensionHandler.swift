@@ -34,10 +34,16 @@ final class SafariExtensionHandlerViewModel {
             if let payable = json["payable"].bool {
                 model.payable = payable
             }
+            // post reply info
+            if let respondable = json["respondable"].bool {
+                model.respondable = respondable
+            }
             
             // post BaiduYun info
             if let baiduYunLinks = (json["baiduYunLinks"].array?.compactMap { $0.string }),
             let baiduYunCodes = (json["baiduYunCodes"].array?.compactMap { $0.string }) {
+                os_log("%{public}s[%{public}ld], %{public}s: BaiduYun links: %s; codes: %s", ((#file as NSString).lastPathComponent), #line, #function, baiduYunLinks.debugDescription, baiduYunCodes.debugDescription)
+
                 let infos = zip(baiduYunLinks, baiduYunCodes)
                 let baiduYuns = infos.compactMap { link, code -> TSDM.BaiduYun? in
                     guard let url = URL(string: link) else  { return nil }

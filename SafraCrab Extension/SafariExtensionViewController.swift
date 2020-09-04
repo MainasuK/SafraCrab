@@ -48,6 +48,14 @@ extension SafariExtensionViewController {
         dismissPopover()
     }
     
+    @objc private func replyButtonPressed(_ sender: NSButton) {
+        guard let tsdm = self.tsdm else { return }
+        os_log("^ %{public}s[%{public}ld], %{public}s: reply %{public}s", ((#file as NSString).lastPathComponent), #line, #function, tsdm.debugDescription)
+        
+        tsdm.page?.dispatchMessageToScript(withName: "TSDM", userInfo: ["action": "reply"])
+        dismissPopover()
+    }
+    
 }
 
 extension SafariExtensionViewController {
@@ -129,6 +137,40 @@ extension SafariExtensionViewController {
             NSLayoutConstraint.activate([
                 payContainerView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
                 payContainerView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            ])
+        }
+        
+        if viewModel.respondable {
+            let replyContainerView = NSView()
+            replyContainerView.wantsLayer = true
+            replyContainerView.layer?.masksToBounds = false
+            
+            let replyTitle = NSTextField(labelWithString: "回复主题")
+            replyTitle.maximumNumberOfLines = 1
+            replyTitle.translatesAutoresizingMaskIntoConstraints = false
+            replyContainerView.addSubview(replyTitle)
+            
+            let replyButton = NSButton(title: "回复", target: self, action: #selector(SafariExtensionViewController.replyButtonPressed(_:)))
+            replyButton.setButtonType(.momentaryPushIn)
+            replyButton.bezelStyle = .roundRect
+            replyButton.translatesAutoresizingMaskIntoConstraints = false
+            replyContainerView.addSubview(replyButton)
+            
+            NSLayoutConstraint.activate([
+                replyTitle.topAnchor.constraint(equalTo: replyContainerView.topAnchor),
+                replyTitle.leadingAnchor.constraint(equalTo: replyContainerView.leadingAnchor),
+                replyTitle.bottomAnchor.constraint(equalTo: replyContainerView.bottomAnchor),
+                replyButton.leadingAnchor.constraint(equalTo: replyTitle.trailingAnchor, constant: 4),
+                replyContainerView.trailingAnchor.constraint(equalTo: replyButton.trailingAnchor, constant: 4),
+                replyButton.centerYAnchor.constraint(equalTo: replyTitle.centerYAnchor),
+            ])
+            replyButton.setContentHuggingPriority(.required, for: .horizontal)
+            
+            replyContainerView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.addArrangedSubview(replyContainerView)
+            NSLayoutConstraint.activate([
+                replyContainerView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+                replyContainerView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             ])
         }
         
