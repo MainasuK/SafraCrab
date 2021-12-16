@@ -39,7 +39,7 @@ class SafraCrabService<T: SafraCrabModel> {
     }
     
     func removeModel(of page: SFSafariPage) {
-        if let model = models[page] {
+        if let _ = models[page] {
             models[page] = nil
         } else if let page = models.first(where: { $0.key.isEqual(page) })?.key {
             models[page] = nil
