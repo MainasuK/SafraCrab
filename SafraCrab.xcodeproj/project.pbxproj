@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB1AFA332442CF8C0044EB8B /* SafraCrab.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = DB1AFA322442CF8C0044EB8B /* SafraCrab.entitlements */; };
 		DB1AFA352442CF8C0044EB8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA342442CF8C0044EB8B /* AppDelegate.swift */; };
 		DB1AFA382442CF8C0044EB8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB1AFA362442CF8C0044EB8B /* Main.storyboard */; };
 		DB1AFA3A2442CF8C0044EB8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AFA392442CF8C0044EB8B /* ViewController.swift */; };
@@ -293,7 +292,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = MainasuK;
 				TargetAttributes = {
 					DB1AFA2E2442CF8C0044EB8B = {
@@ -337,7 +336,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB1AFA332442CF8C0044EB8B /* SafraCrab.entitlements in Resources */,
 				DB1AFA3C2442CF8E0044EB8B /* Assets.xcassets in Resources */,
 				DB1AFA382442CF8C0044EB8B /* Main.storyboard in Resources */,
 			);
@@ -457,6 +455,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -517,6 +516,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -550,6 +550,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SafraCrab Extension/SafraCrab_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = A8K92XFF77;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "SafraCrab Extension/Info.plist";
@@ -572,6 +573,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SafraCrab Extension/SafraCrab_Extension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = A8K92XFF77;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "SafraCrab Extension/Info.plist";
@@ -597,7 +599,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = A8K92XFF77;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = SafraCrab/Info.plist;
@@ -622,7 +624,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = A8K92XFF77;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = SafraCrab/Info.plist;

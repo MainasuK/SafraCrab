@@ -9,7 +9,7 @@
 import Cocoa
 import CommonOSLog
 
-protocol PopoverControlEntryViewDelegate: class {
+protocol PopoverControlEntryViewDelegate: AnyObject {
     func popoverControlEntryView(_ view: PopoverControlEntryView, buttonDidPressed button: NSButton)
 }
 

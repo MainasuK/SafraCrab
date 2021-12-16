@@ -9,7 +9,7 @@
 import Foundation
 import SafariServices
 
-protocol SafraCrabModel: class {
+protocol SafraCrabModel: AnyObject {
     typealias URI = URL
     
     var uuid: UUID { get }

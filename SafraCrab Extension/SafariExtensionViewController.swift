@@ -275,6 +275,7 @@ extension SafariExtensionViewController: PopoverControlEntryViewDelegate {
         os_log("^ %{public}s[%{public}ld], %{public}s", ((#file as NSString).lastPathComponent), #line, #function)
 
         defer {
+            os_log("^ %{public}s[%{public}ld], %{public}s: didmiss popover", ((#file as NSString).lastPathComponent), #line, #function)
             dismissPopover()
         }
         
@@ -288,16 +289,15 @@ extension SafariExtensionViewController: PopoverControlEntryViewDelegate {
         }
         
         if let releaseNote = view.userInfo["AppleDeveloper.ReleaseNote"] as? AppleDeveloper.ReleaseNote {
+            os_log("^ %{public}s[%{public}ld], %{public}s: save release note…", ((#file as NSString).lastPathComponent), #line, #function)
+            
             let savePanel = NSSavePanel()
             savePanel.allowedFileTypes = ["txt"]
             savePanel.nameFieldStringValue = releaseNote.title
             savePanel.showsTagField = false
-            savePanel.begin { response in
-                os_log("^ %{public}s[%{public}ld], %{public}s: save response: %{public}s", ((#file as NSString).lastPathComponent), #line, #function, String(describing: response))
-                
-                if response == .OK, let destinationURL = savePanel.url {
-                    try? releaseNote.content.write(to: destinationURL, atomically: true, encoding: .utf8)
-                }
+            let response = savePanel.runModal()     // async modal fail on macOS Monterey
+            if response == .OK, let destinationURL = savePanel.url {
+                try? releaseNote.content.write(to: destinationURL, atomically: true, encoding: .utf8)
             }
         }
     }
